@@ -3,7 +3,7 @@ ui-theme:
 llm-pi-ai:
   providers:
     custom-openai:
-      displayName: Custom OpenAI-compatible provider
+      displayName: 自定义 OpenAI 兼容提供方
       apiKeyEnv: DEEPSEEK_API_KEY
       api: openai-responses
       baseURL: https://api.example.invalid

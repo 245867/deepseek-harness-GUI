@@ -1,4 +1,4 @@
-/* Keep message content readable when the flex row is narrow. */
+/* 弹性行变窄时，保证消息内容仍然可读。 */
 .message {
   min-width: 0;
 }

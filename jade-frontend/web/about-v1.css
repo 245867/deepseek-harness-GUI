@@ -1,4 +1,4 @@
-/* DSH-GUI about drawer: compact project identity and runtime details. */
+/* DSH-GUI 关于抽屉：紧凑展示项目标识与运行时信息。 */
 .about-drawer { width: min(430px, 100vw); }
 .about-body { display: flex; flex-direction: column; gap: 14px; padding-top: 22px; }
 .about-hero-card {

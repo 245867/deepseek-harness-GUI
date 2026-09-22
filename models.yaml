@@ -1,16 +1,16 @@
-# Public model catalog. Keep credentials out of this file.
-# Provider/model identifiers must match the provider configuration consumed by dsh.
+# 公开的模型目录。请勿把任何凭据写进本文件。
+# 提供方与模型的标识符必须与 dsh 实际消费的提供方配置保持一致。
 groups:
   - id: kakouai
     name: Kakou AI
-    description: Custom OpenAI Responses gateway
+    description: 自定义 OpenAI Responses 网关
     models:
       - id: gpt-5.6
         name: GPT-5.6
         default: true
   - id: deepseek-official
     name: DeepSeek
-    description: Built-in DeepSeek catalog
+    description: 内置的 DeepSeek 模型目录
     models:
       - id: deepseek-v4-flash
         name: DeepSeek-V4-Flash

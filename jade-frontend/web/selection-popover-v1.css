@@ -1,4 +1,4 @@
-/* Composer selectors must stay above wallpaper and accept direct pointer input. */
+/* 输入区选择器必须浮在壁纸之上，并且能直接接收指针事件。 */
 #modelMenu,
 #permissionMenu {
   z-index: 50;

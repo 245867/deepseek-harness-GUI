@@ -1,11 +1,11 @@
-# Local credentials and provider endpoints
+# 本地凭据与模型提供方端点
 secrets.env
 settings.yaml
 plugin-overrides.conf
 *.key
 *.pem
 
-# Local runtime state
+# 本机运行期状态
 sessions/
 storages/
 profiles/
@@ -14,7 +14,7 @@ jade-data/
 *.probe
 *-window-url.txt
 
-# Local binaries and SDK runtime copies
+# 本地二进制与 SDK 运行时副本
 DSHStudio.exe
 DSH-GUI.exe
 DSH-GUI-v33.exe
@@ -26,7 +26,7 @@ jade-frontend/JadeView_x64.dll
 jade-frontend/build/
 session-archive.conf
 
-# Dependencies and generated artifacts
+# 依赖与生成产物
 deepseek-harness/node_modules/
 deepseek-harness/**/node_modules/
 deepseek-harness/**/lib/
@@ -34,14 +34,14 @@ deepseek-harness/**/*.tsbuildinfo
 deepseek-harness/.turbo/
 deepseek-harness/coverage/
 
-# User/editor/system files
+# 用户 / 编辑器 / 系统文件
 .anonymous-user-id
 .idea/
 .vscode/
 Thumbs.db
 desktop.ini
 
-# Forum posts - never commit (Git publishing rule #4)
+# 论坛发帖内容：严禁入库（发布铁律第 4 条）
 *_DZ论坛帖子.txt
 *DZ论坛*.txt
 发帖*.txt

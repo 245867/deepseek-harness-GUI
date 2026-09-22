@@ -1,4 +1,4 @@
-param(
+﻿param(
   [string]$Repository = '',
   [string]$Proxy = 'http://127.0.0.1:7897'
 )
@@ -7,12 +7,12 @@ if (-not $Repository) {
   $Repository = Join-Path $PSScriptRoot 'deepseek-harness'
 }
 if (-not (Test-Path -LiteralPath (Join-Path $Repository 'package.json'))) {
-  throw "Missing local DSH gateway project: $Repository"
+  throw "找不到本地 DSH 网关项目：$Repository"
 }
 
 $secretFile = Join-Path $PSScriptRoot 'secrets.env'
 if (-not (Test-Path -LiteralPath $secretFile)) {
-  throw "Missing private secret file: $secretFile"
+  throw "缺少私有密钥文件：$secretFile"
 }
 
 Get-Content -LiteralPath $secretFile | ForEach-Object {

@@ -429,7 +429,7 @@ typedef const char* (JADEVIEW_CALL *IpcCallback)(uint32_t, const char*);
 extern "C" {
 #endif
 
-// --- from japk_api.rs ---
+// --- 源自 japk_api.rs ---
 // 设置公钥 (必须在加载 JAPK 之前调用)
 // # 参数
 // - `public_key`: Base64 编码的 Ed25519 公钥 (44 字符)
@@ -472,7 +472,7 @@ char* JADEVIEW_CALL JadeView_get_signature_info(void);
 // - 0=成功
 int32_t JADEVIEW_CALL JadeView_unload(void);
 
-// --- from lifecycle.rs ---
+// --- 源自 lifecycle.rs ---
 // DLL初始化
 // 备注 · app_signature 长度限制：
 // `app_signature` 必填，且 **trim 后至少 `MIN_APP_SIGNATURE_CHARS`（=6）个 Unicode 字符**；
@@ -490,7 +490,7 @@ int32_t JADEVIEW_CALL jadeview_exit(void);
 // [已废弃] 请使用 jadeview_exit() 代替
 int32_t JADEVIEW_CALL cleanup_all_windows(void);
 
-// --- from window.rs ---
+// --- 源自 window.rs ---
 // 创建WebView窗口
 uint32_t JADEVIEW_CALL create_webview_window(const char* url, uint32_t parent_window_id, const struct WebViewWindowOptions* options, const struct WebViewSettings* webview_settings);
 // 独立无边框 WebView 窗口：内部为普通承载窗口 + WebView，返回 `window_id`。
@@ -588,7 +588,7 @@ int32_t JADEVIEW_CALL set_window_progress(uint32_t window_id, int32_t progress, 
 int32_t JADEVIEW_CALL flash_window(uint32_t window_id, uint32_t count);
 int32_t JADEVIEW_CALL show_about_dialog(uint32_t window_id);
 
-// --- from tray.rs ---
+// --- 源自 tray.rs ---
 uint32_t JADEVIEW_CALL tray_create(void);
 int32_t JADEVIEW_CALL tray_destroy(uint32_t tray_id);
 int32_t JADEVIEW_CALL tray_set_visible(uint32_t tray_id, int32_t visible);
@@ -598,7 +598,7 @@ int32_t JADEVIEW_CALL tray_set_icon_from_file(uint32_t tray_id, const char* icon
 int32_t JADEVIEW_CALL tray_set_menu_items(uint32_t tray_id, const struct TrayMenuItemDesc* items, uint32_t item_count);
 int32_t JADEVIEW_CALL set_tray_icon_from_data(uint32_t tray_id, const uint8_t* icon_data, uint32_t data_len);
 
-// --- from dialog.rs ---
+// --- 源自 dialog.rs ---
 // 显示通知
 int32_t JADEVIEW_CALL show_notification(const struct NotificationParams* params);
 // 显示打开文件对话框
@@ -649,11 +649,11 @@ int32_t JADEVIEW_CALL jade_set_context_menu_items(uint32_t window_id, const uint
 // 销毁菜单项（及其子项）
 int32_t JADEVIEW_CALL jade_menu_item_destroy(uint32_t menu_id);
 
-// --- from yaml_store.rs ---
+// --- 源自 yaml_store.rs ---
 // YAML: set value by key path (a.b.c). `value` 可为 JSON、YAML 片段或任意纯文本（见 parse_yaml_set_payload）。
 // 返回值：1=成功，0=路径不存在/空操作，-1=IO错误，-2=类型不匹配，-4=格式解析失败
 int32_t JADEVIEW_CALL yaml_set(const char* file_name, const char* key_path, const char* value);
-// YAML: get value by key path; returns JSON string in buffer.
+// YAML：按键路径取值，结果以 JSON 字符串返回至缓冲区。
 // 返回值：1=成功，≥2=两阶段查询所需字节数(含NUL)，0=路径不存在，-1=IO错误，-4=格式解析失败
 int32_t JADEVIEW_CALL yaml_get(const char* file_name, const char* key_path, char* buffer, size_t buffer_size);
 // YAML: 强制字符串存储（不尝试 JSON/YAML 解析）
@@ -684,7 +684,7 @@ int32_t JADEVIEW_CALL yaml_keys(const char* file_name, const char* key_path, cha
 // 返回值：≥0=长度，-1=IO错误，-2=类型不匹配(非映射非序列)，-4=格式解析失败
 int32_t JADEVIEW_CALL yaml_len(const char* file_name, const char* key_path);
 
-// --- from system.rs ---
+// --- 源自 system.rs ---
 // 打开打印对话框（WebView2 内置）
 int32_t JADEVIEW_CALL jade_print(uint32_t window_id);
 // 使用系统关联程序打印文件（Windows=ShellExecute "print"、Linux=CUPS lp），调用点无 cfg。
@@ -780,7 +780,7 @@ int32_t JADEVIEW_CALL get_cursor_position(char* buffer, int32_t buffer_size);
 // # 返回值
 // - `>= 0`：Unix 时间戳（毫秒）
 // - `-1`：获取失败
-// # Safety
+// # 安全性
 // `ntp_server` 可为 `NULL`；若非空必须指向以 NUL 结尾的有效 C 字符串。
 int64_t JADEVIEW_CALL jade_ntp_now(const char* ntp_server);  /* PATCH: 上游 v2.3.0-beta.6 头 cbindgen 漏映射, 原为 `i64`(Rust型) → C++ 不识别, 改为 int64_t */
 
