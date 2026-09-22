@@ -125,6 +125,16 @@ Agent 执行任务时，消息区会生成一张「执行过程」卡片，实�
 └── README.md
 ```
 
+### 5.1 关于随包分发的上游子项目
+
+`deepseek-harness/` 是**随包分发的上游项目**，其文档沿用上游自己的**双语体系**，本项目刻意保持原样，以便后续能顺利同步上游更新：
+
+- 文件名带 `.zh.md` 后缀的才是**中文版**，例如 `deepseek-harness/README.zh.md`、`deepseek-harness/CONTRIBUTING.zh.md`，以及各子包下的 `README.zh.md`。
+- 点进某个子包目录时，GitHub 默认渲染的是上游的英文 `README.md`；中文版就在**同目录**的 `README.zh.md` 里。
+- 本仓库**根目录**的 `README.md`（即你正在读的这份）是本项目自己产出的文档，已全中文。
+
+> 如果你要找某段说明的中文版，把对应路径的 `README.md` 换成 `README.zh.md` 即可。
+
 ## 六、配置文件与密钥隔离
 
 密钥隔离是本项目最重要的一条安全约定：**API Key 只由服务端读取，前端不接触、不发送、不渲染。**
@@ -153,6 +163,14 @@ tools\build-dsh-studio.cmd
 ```
 
 脚本会依次完成：初始化 MSVC x64 编译环境 → 用 MSBuild 编译 `jade-frontend\DSHStudio.vcxproj` → 把生成的 `DSH-GUI.exe` 与 `JadeView_x64.dll` 复制到仓库根目录。
+
+脚本默认使用 Visual Studio 2019 社区版的安装路径。如果你的安装位置不同，可以先设置以下环境变量再执行，无需改动脚本：
+
+```cmd
+set VS_DEV_CMD=D:\你的路径\Common7\Tools\VsDevCmd.bat
+set VS_MSBUILD=D:\你的路径\MSBuild\Current\Bin\amd64\MSBuild.exe
+tools\build-dsh-studio.cmd
+```
 
 发布出来的根目录可执行文件，会使用 `jade-frontend\web` 下的前端资源，以及 `%USERPROFILE%\.dsh\models.yaml` 中的模型目录。
 
