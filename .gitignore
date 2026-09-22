@@ -1,0 +1,47 @@
+# Local credentials and provider endpoints
+secrets.env
+settings.yaml
+plugin-overrides.conf
+*.key
+*.pem
+
+# Local runtime state
+sessions/
+storages/
+profiles/
+jade-data/
+*.log
+*.probe
+*-window-url.txt
+
+# Local binaries and SDK runtime copies
+DSHStudio.exe
+DSH-GUI.exe
+DSH-GUI-v33.exe
+JadeView_x64.dll
+*.pdb
+*.ilk
+jade-frontend/DSHStudio.exe
+jade-frontend/JadeView_x64.dll
+jade-frontend/build/
+session-archive.conf
+
+# Dependencies and generated artifacts
+deepseek-harness/node_modules/
+deepseek-harness/**/node_modules/
+deepseek-harness/**/lib/
+deepseek-harness/**/*.tsbuildinfo
+deepseek-harness/.turbo/
+deepseek-harness/coverage/
+
+# User/editor/system files
+.anonymous-user-id
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
+
+# Forum posts - never commit (Git publishing rule #4)
+*_DZ论坛帖子.txt
+*DZ论坛*.txt
+发帖*.txt

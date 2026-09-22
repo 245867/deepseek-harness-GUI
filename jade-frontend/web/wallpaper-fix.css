@@ -1,0 +1,1 @@
+body.wallpaper-enabled{position:relative;isolation:isolate;overflow:hidden}body.wallpaper-enabled::before{pointer-events:none}body.wallpaper-enabled .shell{position:relative}

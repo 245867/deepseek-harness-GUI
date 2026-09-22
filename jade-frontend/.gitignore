@@ -1,0 +1,6 @@
+DSHStudio.exe
+JadeView_x64.dll
+build/
+sdk/JadeView_x64.lib
+jade-data/
+*.log

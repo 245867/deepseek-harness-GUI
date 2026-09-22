@@ -1,0 +1,20 @@
+/* Composer selectors must stay above wallpaper and accept direct pointer input. */
+#modelMenu,
+#permissionMenu {
+  z-index: 50;
+  pointer-events: auto;
+}
+
+#modelMenu .model-option,
+#permissionMenu .model-option {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+#modelMenu .model-option:disabled,
+#permissionMenu .model-option:disabled {
+  cursor: wait;
+  opacity: .65;
+}

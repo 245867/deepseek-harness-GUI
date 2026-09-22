@@ -1,0 +1,4 @@
+.session-tabs{display:flex;align-items:center;gap:4px;margin:0 4px 8px;padding:3px;border:1px solid color-mix(in srgb,var(--line) 75%,transparent);border-radius:7px;background:#0b101825}
+.session-tabs button{display:flex;flex:1;justify-content:space-between;align-items:center;gap:7px;height:28px;padding:0 8px;border-radius:5px;background:transparent;color:var(--muted);font-size:11px;text-align:left}
+.session-tabs button:hover{color:var(--text);background:#ffffff0a}.session-tabs button.active{background:color-mix(in srgb,var(--accent) 17%,transparent);color:var(--text)}
+.session-tabs span{display:grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:4px;background:#ffffff0d;color:inherit;font-size:10px}.session-tabs button.active span{background:color-mix(in srgb,var(--accent) 25%,transparent)}

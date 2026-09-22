@@ -1,0 +1,18 @@
+# Public model catalog. Keep credentials out of this file.
+# Provider/model identifiers must match the provider configuration consumed by dsh.
+groups:
+  - id: kakouai
+    name: Kakou AI
+    description: Custom OpenAI Responses gateway
+    models:
+      - id: gpt-5.6
+        name: GPT-5.6
+        default: true
+  - id: deepseek-official
+    name: DeepSeek
+    description: Built-in DeepSeek catalog
+    models:
+      - id: deepseek-v4-flash
+        name: DeepSeek-V4-Flash
+      - id: deepseek-v4-pro
+        name: DeepSeek-V4-Pro

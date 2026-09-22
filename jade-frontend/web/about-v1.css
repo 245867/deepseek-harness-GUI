@@ -1,0 +1,93 @@
+/* DSH-GUI about drawer: compact project identity and runtime details. */
+.about-drawer { width: min(430px, 100vw); }
+.about-body { display: flex; flex-direction: column; gap: 14px; padding-top: 22px; }
+.about-hero-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px;
+  border: 1px solid #334563;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #182842 0%, #141f31 100%);
+  box-shadow: 0 12px 28px #060b141f;
+}
+.about-logo {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid #9fb7df3d;
+  border-radius: 15px;
+  background: #f7faff;
+  box-shadow: 0 6px 18px #0004;
+}
+.about-logo img { width: 45px; height: 45px; }
+.about-hero-copy { min-width: 0; }
+.about-name-line { display: flex; align-items: center; gap: 9px; }
+.about-name-line h3 { margin: 0; color: #f0f5ff; font-size: 20px; font-weight: 750; line-height: 1.2; }
+.about-name-line span {
+  padding: 2px 7px;
+  border: 1px solid #8caaff4d;
+  border-radius: 999px;
+  background: #7293ff1c;
+  color: #b9caff;
+  font-size: 10px;
+  font-weight: 700;
+}
+.about-hero-copy p { margin: 5px 0 0; color: #a8b8cf; font-size: 11px; }
+.about-divider { height: 1px; background: var(--line); }
+.about-meta-cards { display: flex; flex-direction: column; gap: 7px; }
+.about-meta-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 57px;
+  padding: 9px 10px;
+  border: 1px solid #2d3b52;
+  border-radius: 8px;
+  background: #151f2e;
+  color: var(--text);
+  text-align: left;
+}
+.about-copyable { cursor: pointer; transition: border-color .15s, background .15s; }
+.about-copyable:hover { border-color: #6f91de; background: #1a2b43; }
+.about-group-card { color: var(--text); cursor: pointer; text-decoration: none; transition: border-color .15s, background .15s; }
+.about-group-card:hover { border-color: #5d9e89; background: #172b2a; }
+.about-meta-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 9px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.about-meta-icon.network { background: #335da133; color: #92b6ff; }
+.about-meta-icon.author { background: #9b6a2c2e; color: #e9bd78; }
+.about-meta-icon.qq { background: #356aac2e; color: #98bcff; }
+.about-meta-icon.group { background: #2e815d2e; color: #8ce0b8; }
+.about-meta-icon.project { background: #6959bb2e; color: #b5a8ff; }
+.about-meta-icon.runtime { background: #266b6a2e; color: #89dcd5; }
+.about-meta-icon.secure { background: #2e7b562e; color: #8ce2b6; }
+.about-meta-info { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 1px; }
+.about-meta-info small { color: var(--muted); font-size: 10px; }
+.about-meta-info strong { overflow: hidden; color: #dce5f4; font-size: 12px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.about-meta-card em { flex: none; color: #8ea2c1; font-size: 9px; font-style: normal; opacity: 0; transition: opacity .15s; }
+.about-copyable:hover em { opacity: 1; }
+.about-group-card:hover em { color: #a4dfc1; opacity: 1; }
+.about-footer { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.6; text-align: center; }
+body[data-theme="light"] .about-hero-card { border-color: #cfdaea; background: linear-gradient(135deg, #edf3ff 0%, #fafdff 100%); box-shadow: 0 10px 26px #263b5e14; }
+body[data-theme="light"] .about-name-line h3 { color: #26354d; }
+body[data-theme="light"] .about-hero-copy p { color: #64758f; }
+body[data-theme="light"] .about-meta-card { border-color: #d8e1ee; background: #fff; }
+body[data-theme="light"] .about-copyable:hover { border-color: #7b91cc; background: #f4f8ff; }
+body[data-theme="light"] .about-group-card:hover { border-color: #7fb699; background: #f1fbf5; }
+body[data-theme="light"] .about-meta-info strong { color: #34445d; }
+body.wallpaper-enabled .about-hero-card { background: #172842c4; backdrop-filter: blur(13px); }
+body.wallpaper-enabled .about-meta-card { background: #142033c2; backdrop-filter: blur(12px); }
+body[data-theme="light"].wallpaper-enabled .about-hero-card { background: #eff5ffc2; }
+body[data-theme="light"].wallpaper-enabled .about-meta-card { background: #ffffffbf; }
+@media (max-width: 480px) { .about-drawer { width: 100vw; } .about-meta-info strong { font-size: 11px; } }

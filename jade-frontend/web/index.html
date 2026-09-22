@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>DSH Studio</title>
+  <link rel="stylesheet" href="styles-v5.css">
+  <link rel="stylesheet" href="themes-v5.css">
+  <link rel="stylesheet" href="wallpaper-fix-v5.css">
+  <link rel="stylesheet" href="message-layout-v1.css">
+  <link rel="stylesheet" href="plugin-inventory-v1.css">
+  <link rel="stylesheet" href="plugin-page-v1.css">
+  <link rel="stylesheet" href="context-menu-v1.css">
+  <link rel="stylesheet" href="archive-v1.css">
+  <link rel="stylesheet" href="about-v1.css">
+  <link rel="stylesheet" href="selection-popover-v1.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="titlebar">
+      <div class="brand"><span class="brand-mark"><img src="assets/deepseek-fish.svg" alt=""></span><div><strong>DSH-GUI</strong><small>DeepSeek Harness</small></div></div>
+      <div class="connection"><span id="connectionDot" class="dot"></span><span id="connectionText">连接中</span><code>127.0.0.1:3080</code></div>
+      <div class="window-actions"><button id="minimize" title="最小化">−</button><button id="maximize" title="最大化">□</button><button id="close" title="关闭">×</button></div>
+    </header>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-top"><button id="newSession" class="primary"><span>＋</span> 新建会话</button><button id="refresh" class="icon-btn" title="刷新会话">↻</button></div>
+        <label class="search"><span>⌕</span><input id="search" placeholder="搜索会话" autocomplete="off"></label>
+        <div class="session-tabs" role="tablist" aria-label="会话列表"><button id="activeSessions" class="active" type="button" role="tab">会话 <span id="sessionCount">0</span></button><button id="archivedSessions" type="button" role="tab">归档 <span id="archiveCount">0</span></button></div>
+        <div id="sessions" class="sessions"></div>
+        <div class="sidebar-bottom"><button id="fullWorkspace" class="side-link"><span>◈</span>完整工作台</button><button id="plugins" class="side-link"><span>⌘</span>插件</button><button id="settings" class="side-link"><span>⚙</span>设置与模型</button><button id="about" class="side-link"><span>ⓘ</span>关于 DSH-GUI</button><div class="safe-note"><span class="shield">✓</span><div><strong>本地安全模式</strong><small>密钥仅由服务端读取</small></div></div></div>
+      </aside>
+      <main class="workspace">
+        <div class="workspace-head"><div><div class="eyebrow">当前会话</div><h1 id="sessionTitle">准备开始</h1></div><div class="head-actions"><button id="copyAll" class="ghost" title="复制全部消息">▣</button><button id="clearSession" class="ghost" title="新建空白会话">＋</button></div></div>
+        <span id="currentModel" hidden>加载中</span><button id="modelPicker" hidden type="button"></button>
+        <section id="messages" class="messages"><div class="empty"><div class="empty-orb">✦</div><h2>你好，我是 DSH</h2><p>选择一个模型，开始你的下一次探索。</p><div class="quick-prompts"><button data-prompt="帮我分析这个项目的结构">分析项目结构</button><button data-prompt="写一个简洁的实现方案">设计实现方案</button><button data-prompt="解释这段代码的作用">解释代码</button></div></div></section>
+        <form id="composer" class="composer"><textarea id="prompt" rows="1" placeholder="输入消息，Enter 发送 · Shift+Enter 换行"></textarea><div class="composer-foot"><div class="composer-tools"><button type="button" class="tool" title="添加附件">＋</button><button id="permissionPicker" type="button" class="composer-model permission-picker" title="切换当前会话权限"><span id="permissionLabel">权限加载中</span><b>⌄</b></button><button id="composerModelPicker" type="button" class="composer-model" title="切换当前会话模型"><span id="composerModelLabel">模型加载中</span><b>⌄</b></button><span id="statusText">就绪</span></div><button id="sendButton" class="send" type="submit"><span>发送</span><b>↗</b></button></div></form>
+      </main>
+    </div>
+  </div>
+  <div id="modelMenu" class="popover hidden"></div>
+  <div id="permissionMenu" class="popover hidden"></div>
+  <div id="contextMenu" class="context-menu hidden" role="menu" aria-label="快捷操作"></div>
+  <div id="confirmDialog" class="confirm-dialog hidden" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="confirm-backdrop"></div>
+    <section class="confirm-card">
+      <div class="confirm-icon">!</div>
+      <div><h2 id="confirmTitle">确认操作</h2><p id="confirmDescription"></p></div>
+      <div class="confirm-actions"><button id="confirmCancel" type="button">取消</button><button id="confirmAccept" type="button" class="danger">继续</button></div>
+    </section>
+  </div>
+  <div id="pluginsPanel" class="drawer plugin-drawer hidden" aria-label="插件管理">
+    <div class="drawer-head plugin-page-head">
+      <div><div class="eyebrow">本机 DSH 运行时</div><h2>插件</h2><p id="pluginSummary" class="plugin-summary">正在读取插件清单...</p></div>
+      <div class="drawer-actions"><button id="refreshPlugins" class="icon-btn" title="刷新插件列表">↻</button><button id="closePlugins" class="icon-btn" title="关闭插件页">×</button></div>
+    </div>
+    <div class="plugin-page-body">
+      <div class="plugin-stats"><div><strong id="pluginEnabledCount">-</strong><small>已启用</small></div><div><strong id="pluginDisabledCount">-</strong><small>已关闭</small></div><div><strong id="pluginActiveCount">-</strong><small>运行中</small></div></div>
+      <label class="plugin-search"><span>⌕</span><input id="pluginSearch" placeholder="搜索插件名称或 ID" autocomplete="off"></label>
+      <div class="plugin-filters" role="group" aria-label="插件状态筛选"><button class="active" data-plugin-filter="all">全部</button><button data-plugin-filter="enabled">已启用</button><button data-plugin-filter="disabled">已关闭</button></div>
+      <p class="plugin-help">开关会写入本机 profile 并由 DSH 热重载。系统核心插件为避免服务中断而受保护。</p>
+      <div id="pluginPageList" class="plugin-page-list"></div>
+    </div>
+  </div>
+  <div id="settingsPanel" class="drawer hidden"><div class="drawer-head"><div><div class="eyebrow">本机配置</div><h2>设置与模型</h2></div><button id="closeSettings" class="icon-btn">×</button></div><div class="drawer-body"><div class="setting-card"><span class="setting-icon">◈</span><div><strong>网关连接</strong><small>DSH 服务运行在本机 3080 端口</small></div><span class="pill good">已连接</span></div><h3>外观</h3><div id="themeChoices" class="theme-segment"><button data-theme-choice="dark">黑色</button><button data-theme-choice="light">白色</button></div><label class="wallpaper-switch"><input id="wallpaperEnabled" type="checkbox"><span class="switch-track"></span><span><strong>壁纸背景</strong><small>默认关闭，开启后使用半透明工作区</small></span></label><div id="wallpaperChoices" class="wallpaper-grid"></div><h3>模型分组</h3><div id="modelGroups" class="model-groups"></div><p class="drawer-tip">模型分组来自 <code>~/.dsh/models.yaml</code>。API Key 存放在私有 <code>secrets.env</code>，不会进入前端或开源代码。</p></div></div>
+  <div id="aboutPanel" class="drawer about-drawer hidden" aria-label="关于 DSH-GUI"><div class="drawer-head"><div><div class="eyebrow">DSH-GUI</div><h2>关于</h2></div><button id="closeAbout" class="icon-btn" title="关闭关于页">×</button></div><div class="drawer-body about-body"><section class="about-hero-card"><div class="about-logo"><img src="assets/deepseek-fish.svg" alt="DSH-GUI"></div><div class="about-hero-copy"><div class="about-name-line"><h3>DSH-GUI</h3><span>v1.0</span></div><p>DeepSeek Harness 图形客户端</p></div></section><div class="about-divider"></div><section class="about-meta-cards"><button class="about-meta-card about-copyable" type="button" data-copy="花老板"><span class="about-meta-icon author">人</span><span class="about-meta-info"><small>开发者</small><strong>花老板</strong></span><em>点击复制</em></button><button class="about-meta-card about-copyable" type="button" data-copy="245867"><span class="about-meta-icon qq">Q</span><span class="about-meta-info"><small>QQ</small><strong>245867</strong></span><em>点击复制</em></button><a class="about-meta-card about-group-card" href="https://qm.qq.com/q/Fv9KjpGCEq" target="_blank" rel="noreferrer"><span class="about-meta-icon group">群</span><span class="about-meta-info"><small>QQ 群</small><strong>1103426302</strong></span><em>点击加入</em></a><button class="about-meta-card about-copyable" type="button" data-copy="http://127.0.0.1:3080"><span class="about-meta-icon network">⌁</span><span class="about-meta-info"><small>本地网关</small><strong>127.0.0.1:3080</strong></span><em>点击复制</em></button><div class="about-meta-card"><span class="about-meta-icon project">◈</span><span class="about-meta-info"><small>项目</small><strong>DSH-GUI · DeepSeek Harness</strong></span></div><div class="about-meta-card"><span class="about-meta-icon runtime">⌘</span><span class="about-meta-info"><small>运行时</small><strong>JadeView + C++17 + WebView2</strong></span></div><div class="about-meta-card"><span class="about-meta-icon secure">✓</span><span class="about-meta-info"><small>本地安全</small><strong>密钥只由本机服务端读取</strong></span></div></section><div class="about-divider"></div><p class="about-footer">DSH-GUI 为 DeepSeek Harness 提供本地桌面工作台体验。</p></div></div>
+  <div id="toast" class="toast"></div>
+  <script src="app-v5.js?v=36"></script>
+  <script src="theme-v5.js"></script>
+</body>
+</html>

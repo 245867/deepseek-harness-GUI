@@ -1,0 +1,240 @@
+/* Keep message content readable when the flex row is narrow. */
+.message {
+  min-width: 0;
+}
+
+.message > div:not(.avatar) {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: min(720px, calc(100vw - 390px));
+}
+
+.message:not(.user) > div:not(.avatar) {
+  min-width: 72px;
+}
+
+.message .bubble {
+  width: fit-content;
+  min-width: 100%;
+  max-width: 100%;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.execution-card {
+  width: min(720px, calc(100% - 16px));
+  margin: 12px 0 15px 40px;
+  overflow: hidden;
+  border: 1px solid #2c3f5c;
+  border-radius: 8px;
+  background: #131e2e;
+}
+
+.execution-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 36px;
+  padding: 0 12px;
+  border-bottom: 1px solid #263750;
+  background: #17253a;
+}
+
+.execution-head strong {
+  color: #dce7fa;
+  font-size: 11px;
+}
+
+.execution-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.execution-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6795ff;
+  box-shadow: 0 0 0 0 #6795ff80;
+}
+
+.execution-state {
+  color: #7f91aa;
+  font-size: 10px;
+}
+
+.execution-card.running .execution-state {
+  color: #7da8ff;
+}
+
+.execution-card.running .execution-indicator {
+  animation: execution-heartbeat 1.35s ease-in-out infinite;
+}
+
+.execution-card.awaiting-approval .execution-state {
+  color: #f0bc69;
+}
+
+.execution-card.awaiting-approval .execution-indicator {
+  background: #e8ad54;
+  animation: execution-heartbeat-waiting 1.7s ease-in-out infinite;
+}
+
+.execution-card.failed .execution-state {
+  color: #f08a9b;
+}
+
+.execution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 9px 12px 10px;
+}
+
+.execution-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 10px 9px;
+}
+
+.execution-approval {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.execution-approval.hidden {
+  display: none;
+}
+
+.approval-reason {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  color: #d7b16f;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.execution-approval button {
+  height: 25px;
+  padding: 0 8px;
+  border: 1px solid #6b5637;
+  border-radius: 5px;
+  background: #4a3820;
+  color: #ffe0a1;
+  font-size: 10px;
+}
+
+.execution-approval .approval-allow {
+  border-color: #588365;
+  background: #28523d;
+  color: #d6f5df;
+}
+
+.execution-approval button:hover { filter: brightness(1.12); }
+.execution-approval button:disabled { cursor:wait; opacity:.6; }
+
+.execution-copy {
+  height: 25px;
+  padding: 0 8px;
+  border: 1px solid #334b6c;
+  border-radius: 5px;
+  background: #1d2d45;
+  color: #bacbe4;
+  font-size: 10px;
+}
+
+.execution-copy:hover {
+  border-color: #6081c9;
+  background: #273d60;
+  color: #eff4ff;
+}
+
+.execution-item {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  color: #aab9cd;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.execution-item::before {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: #6f8de6;
+  content: "";
+}
+
+.execution-card.running .execution-item.active {
+  color: #d6e4ff;
+}
+
+.execution-card.running .execution-item.active::before {
+  width: 7px;
+  height: 7px;
+  background: #78a2ff;
+  box-shadow: 0 0 10px #6695ff;
+}
+
+.execution-card:not(.running) .execution-item:last-child::before {
+  background: #62d6a5;
+}
+
+.execution-card.failed .execution-item:last-child::before {
+  background: #f08a9b;
+}
+
+@keyframes execution-heartbeat {
+  0%, 100% { transform: scale(.82); background: #5d8cff; box-shadow: 0 0 0 0 #5d8cff70; }
+  50% { transform: scale(1.55); background: #9fc1ff; box-shadow: 0 0 0 8px #6c9cff00; }
+}
+
+@keyframes execution-heartbeat-waiting {
+  0%, 100% { transform: scale(.86); background: #d99a3e; box-shadow: 0 0 0 0 #d99a3e70; }
+  50% { transform: scale(1.4); background: #ffd48e; box-shadow: 0 0 0 8px #d99a3e00; }
+}
+
+.send.queue-mode {
+  background: #315275;
+  color: #e0edff;
+}
+
+body[data-theme="light"] .execution-card {
+  border-color: #d5e0ef;
+  background: #f7f9fd;
+}
+
+body[data-theme="light"] .execution-head {
+  border-color: #dce5f1;
+  background: #eef3fa;
+}
+
+body[data-theme="light"] .execution-head strong {
+  color: #31445e;
+}
+
+body[data-theme="light"] .execution-card.running .execution-item.active {
+  color: #385678;
+}
+
+body[data-theme="light"] .execution-item {
+  color: #65768e;
+}
+
+body[data-theme="light"] .execution-copy {
+  border-color: #cdd9eb;
+  background: #edf3fc;
+  color: #4c6381;
+}
+
+body[data-theme="light"] .approval-reason { color: #966f2d; }

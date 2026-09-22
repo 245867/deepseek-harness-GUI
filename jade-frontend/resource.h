@@ -1,0 +1,1 @@
+#define IDI_DSH_STUDIO 101

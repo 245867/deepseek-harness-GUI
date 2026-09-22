@@ -1,0 +1,19 @@
+ui-theme:
+  preference: dark
+llm-pi-ai:
+  providers:
+    custom-openai:
+      displayName: Custom OpenAI-compatible provider
+      apiKeyEnv: DEEPSEEK_API_KEY
+      api: openai-responses
+      baseURL: https://api.example.invalid
+      defaultContextWindow: 128000
+      defaultMaxTokens: 16384
+      models:
+        - id: gpt-5.6
+          name: GPT-5.6
+          contextWindow: 128000
+          maxTokens: 16384
+agent-default-model:
+  provider: custom-openai
+  model: gpt-5.6

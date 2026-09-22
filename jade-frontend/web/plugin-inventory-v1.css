@@ -1,0 +1,77 @@
+.drawer-body {
+  overflow-y: auto;
+}
+
+.plugin-inventory {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 3px;
+}
+
+.plugin-entry {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 7px 9px;
+  border: 1px solid #2b3b55;
+  border-radius: 6px;
+  background: #172334;
+}
+
+.plugin-entry.disabled {
+  opacity: .58;
+}
+
+.plugin-entry-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.plugin-entry strong,
+.plugin-entry small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.plugin-entry strong {
+  color: #dce6f7;
+  font-size: 11px;
+}
+
+.plugin-entry small {
+  margin-top: 2px;
+  color: #8190a6;
+  font-size: 10px;
+}
+
+.plugin-entry-state {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #69768a;
+}
+
+.plugin-entry-state.active {
+  background: #62d6a5;
+  box-shadow: 0 0 0 3px #62d6a522;
+}
+
+body[data-theme="light"] .plugin-entry {
+  border-color: #d7e0ed;
+  background: #f7f9fc;
+}
+
+body[data-theme="light"] .plugin-entry strong {
+  color: #28364c;
+}
+
+body[data-theme="light"] .plugin-entry small {
+  color: #718098;
+}
